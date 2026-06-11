@@ -1,8 +1,8 @@
 package com.septeo.ulyses.technical.test.service;
 
-import com.septeo.ulyses.technical.test.entity.Brand;
+import com.septeo.ulyses.technical.test.dto.BestSellingVehicleResponse;
+import com.septeo.ulyses.technical.test.dto.PageResponse;
 import com.septeo.ulyses.technical.test.entity.Sales;
-import com.septeo.ulyses.technical.test.entity.Vehicle;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,12 +13,7 @@ import java.util.Optional;
  */
 public interface SalesService {
 
-    /**
-     * Get all sales.
-     *
-     * @return a list of all sales
-     */
-    List<Sales> getAllSales();
+    PageResponse<Sales> getSalesPage(int page, int pageSize);
 
     /**
      * Get a sales by its ID.
@@ -28,4 +23,9 @@ public interface SalesService {
      */
     Optional<Sales> getSalesById(Long id);
 
+    List<Sales> getSalesByBrand(Long brandId);
+
+    List<Sales> getSalesByVehicle(Long vehicleId);
+
+    List<BestSellingVehicleResponse> getBestSellingVehicles(LocalDate startDate, LocalDate endDate);
 }

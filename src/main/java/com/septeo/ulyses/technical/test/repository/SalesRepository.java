@@ -1,11 +1,8 @@
 package com.septeo.ulyses.technical.test.repository;
 
-import com.septeo.ulyses.technical.test.entity.Brand;
 import com.septeo.ulyses.technical.test.entity.Sales;
-import com.septeo.ulyses.technical.test.entity.Vehicle;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,4 +26,17 @@ public interface SalesRepository {
      */
     Optional<Sales> findById(Long id);
 
+    /**
+     * Page-based slice of sales. Implementations should fetch {@code pageSize + 1}
+     * rows to compute {@code hasMore} without a separate {@code COUNT} query.
+     *
+     * @param page     1-based page number
+     * @param pageSize items per page
+     * @return at most {@code pageSize + 1} sales (the last one only signals there is more data)
+     */
+    List<Sales> findPage(int page, int pageSize);
+
+    List<Sales> findByBrandId(Long brandId);
+
+    List<Sales> findByVehicleId(Long vehicleId);
 }
