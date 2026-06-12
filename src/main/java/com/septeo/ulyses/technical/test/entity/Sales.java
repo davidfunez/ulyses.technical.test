@@ -25,6 +25,7 @@ public class Sales {
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
+    @JsonIgnoreProperties("brand")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
